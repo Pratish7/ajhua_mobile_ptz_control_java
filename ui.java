@@ -18,6 +18,17 @@ import java.awt.event.ActionEvent;
 
 
 public class ui {
+    private static JButton upLeftBtn;
+    private static JButton upBtn;
+    private static JButton rightUpBtn;
+    private static JButton leftBtn;
+    private static JButton zoomBtn;
+    private static JButton rightBtn;
+    private static JButton downLeftBtn;
+    private static JButton downBtn;
+    private static JButton rightDownBtn;
+    private static JLabel statusLabel;
+
     public static void main(String args[]) {
         init_.init(null, null);
 
@@ -105,14 +116,35 @@ public class ui {
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            loginModule.login(host.getText(), Integer.parseInt(port.getText()), user.getText(), password.getText());
+            boolean login = loginModule.login(host.getText(), Integer.parseInt(port.getText()), user.getText(), password.getText());
+            if (login == true){
+                statusLabel.setText("Logged in");
+                upLeftBtn.setEnabled(true);
+                upBtn.setEnabled(true);
+                rightUpBtn.setEnabled(true);
+                leftBtn.setEnabled(true);
+                zoomBtn.setEnabled(true);
+                rightBtn.setEnabled(true);
+                downLeftBtn.setEnabled(true);
+                downBtn.setEnabled(true);
+                rightDownBtn.setEnabled(true);
+            }else {
+                statusLabel.setText("Error loggin in");
             }
+        }
         });
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridwidth = 2;
         loginFrame.add(loginBtn, gbc);
+
+        statusLabel = new JLabel();
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridwidth = 2;
+        loginFrame.add(statusLabel, gbc);
 
         loginFrame.setVisible(true);
         frame.add(loginFrame);
@@ -122,7 +154,8 @@ public class ui {
         controlsFrame.setBorder(null);
         controlsFrame.setLayout(new GridLayout(3, 3, 20, 20));
 
-        JButton upLeftBtn = new JButton("Up Left");
+        upLeftBtn = new JButton("Up Left");
+        upLeftBtn.setEnabled(false);
         upLeftBtn.setPreferredSize(new Dimension(100, 100));
         upLeftBtn.addMouseListener(new MouseListener() {
             @Override
@@ -149,7 +182,8 @@ public class ui {
         });
         controlsFrame.add(upLeftBtn);
 
-        JButton upBtn = new JButton("Up");
+        upBtn = new JButton("Up");
+        upBtn.setEnabled(false);
         upBtn.addMouseListener(new MouseListener() {
             @Override
             public void mouseExited(MouseEvent e) {
@@ -175,7 +209,8 @@ public class ui {
         });
         controlsFrame.add(upBtn);
 
-        JButton rightUpBtn = new JButton("Up Right");
+        rightUpBtn = new JButton("Up Right");
+        rightUpBtn.setEnabled(false);
         rightUpBtn.addMouseListener(new MouseListener() {
             @Override
             public void mouseExited(MouseEvent e) {
@@ -201,7 +236,8 @@ public class ui {
         });
         controlsFrame.add(rightUpBtn);
 
-        JButton leftBtn = new JButton("Left");
+        leftBtn = new JButton("Left");
+        leftBtn.setEnabled(false);
         leftBtn.addMouseListener(new MouseListener() {
             @Override
             public void mouseExited(MouseEvent e) {
@@ -227,7 +263,8 @@ public class ui {
         });
         controlsFrame.add(leftBtn);
 
-        JButton zoomBtn = new JButton("Zoom");
+        zoomBtn = new JButton("Zoom");
+        zoomBtn.setEnabled(false);
         zoomBtn.addMouseListener(new MouseListener() {
             @Override
             public void mouseExited(MouseEvent e) {
@@ -253,7 +290,8 @@ public class ui {
         });
         controlsFrame.add(zoomBtn);
 
-        JButton rightBtn = new JButton("Right");
+        rightBtn = new JButton("Right");
+        rightBtn.setEnabled(false);
         rightBtn.addMouseListener(new MouseListener() {
             @Override
             public void mouseExited(MouseEvent e) {
@@ -279,7 +317,8 @@ public class ui {
         });
         controlsFrame.add(rightBtn);
 
-        JButton downLeftBtn = new JButton("Down Left");
+        downLeftBtn = new JButton("Down Left");
+        downLeftBtn.setEnabled(false);
         downLeftBtn.addMouseListener(new MouseListener() {
             @Override
             public void mouseExited(MouseEvent e) {
@@ -305,7 +344,8 @@ public class ui {
         });
         controlsFrame.add(downLeftBtn);
 
-        JButton downBtn = new JButton("Down");
+        downBtn = new JButton("Down");
+        downBtn.setEnabled(false);
         downBtn.addMouseListener(new MouseListener() {
             @Override
             public void mouseExited(MouseEvent e) {
@@ -331,7 +371,8 @@ public class ui {
         });
         controlsFrame.add(downBtn);
 
-        JButton rightDownBtn = new JButton("Down Right");
+        rightDownBtn = new JButton("Down Right");
+        rightDownBtn.setEnabled(false);
         rightDownBtn.addMouseListener(new MouseListener() {
             @Override
             public void mouseExited(MouseEvent e) {
