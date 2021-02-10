@@ -15,6 +15,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Panel;
 
 
 public class ui {
@@ -22,12 +23,16 @@ public class ui {
     private static JButton upBtn;
     private static JButton rightUpBtn;
     private static JButton leftBtn;
-    private static JButton zoomBtn;
     private static JButton rightBtn;
     private static JButton downLeftBtn;
     private static JButton downBtn;
     private static JButton rightDownBtn;
+    private static JPanel zoomPanel;
+    private static JButton zoomPlusBtn;
+    private static JButton zoomMinusBtn;
     private static JLabel statusLabel;
+    private static Panel videoPanel;
+   
 
     public static void main(String args[]) {
         init_.init(null, null);
@@ -40,8 +45,8 @@ public class ui {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) videoFrame.getUI()).setNorthPane(null);
         videoFrame.setBorder(null);
         videoFrame.setLayout(new GridLayout(1, 1));
-        JPanel videoPanel = new JPanel();
-        videoPanel.setBackground(Color.BLACK);
+        videoPanel = new Panel();
+        videoPanel.setBackground(Color.red);
         videoFrame.add(videoPanel);
         frame.add(videoFrame);
         videoFrame.setVisible(true);
@@ -106,7 +111,7 @@ public class ui {
 
         JTextPane password = new JTextPane();
         password.setFont(new Font("Serif", Font.PLAIN, 18));
-        password.setText("admin@123");
+        password.setText("admin1admin");
         password.setBorder(BorderFactory.createLineBorder(Color.black));
         gbc.gridx = 1;
         gbc.gridy = 3;
@@ -118,12 +123,14 @@ public class ui {
             public void actionPerformed(ActionEvent e) {
             boolean login = loginModule.login(host.getText(), Integer.parseInt(port.getText()), user.getText(), password.getText());
             if (login == true){
+	            stream.startRealPlay(0,0, videoPanel);
                 statusLabel.setText("Logged in");
                 upLeftBtn.setEnabled(true);
                 upBtn.setEnabled(true);
                 rightUpBtn.setEnabled(true);
                 leftBtn.setEnabled(true);
-                zoomBtn.setEnabled(true);
+                zoomPlusBtn.setEnabled(true);
+                zoomMinusBtn.setEnabled(true);
                 rightBtn.setEnabled(true);
                 downLeftBtn.setEnabled(true);
                 downBtn.setEnabled(true);
@@ -263,9 +270,12 @@ public class ui {
         });
         controlsFrame.add(leftBtn);
 
-        zoomBtn = new JButton("Zoom");
-        zoomBtn.setEnabled(false);
-        zoomBtn.addMouseListener(new MouseListener() {
+        zoomPanel = new JPanel();
+        zoomPanel.setLayout(new GridLayout(0,1));
+
+        zoomPlusBtn = new JButton("zoom +");
+        zoomPlusBtn.setEnabled(false);
+        zoomPlusBtn.addMouseListener(new MouseListener() {
             @Override
             public void mouseExited(MouseEvent e) {
             }
@@ -280,15 +290,44 @@ public class ui {
 
             @Override
             public void mousePressed(MouseEvent e) {
-
+                controls.ptzControlZoomPlus();
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                controls.ptzControlZoomPlusStop();
             }
         });
-        controlsFrame.add(zoomBtn);
+        zoomPanel.add(zoomPlusBtn);
+
+        zoomMinusBtn = new JButton("zoom -");
+        zoomMinusBtn.setEnabled(false);
+        zoomMinusBtn.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                controls.ptzControlZoomMinus();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                controls.ptzControlZoomMinusStop();
+            }
+        });
+        zoomPanel.add(zoomMinusBtn);
+
+        controlsFrame.add(zoomPanel);
 
         rightBtn = new JButton("Right");
         rightBtn.setEnabled(false);

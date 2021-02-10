@@ -1,6 +1,8 @@
 {
+    
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
+        "library/win64/*.*"
         
     ],
     "files.exclude": {
@@ -8,5 +10,6 @@
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
-    }
+    },
+    
 }

@@ -73,5 +73,21 @@ public class controls{
         return loginModule.netsdk.CLIENT_DHPTZControlEx2(loginModule.m_hLoginHandle, 0, NetSDKLib.NET_EXTPTZ_ControlType.NET_EXTPTZ_RIGHTDOWN, 0, 0, 0, 1, null);
     }
 
+    public static boolean ptzControlZoomPlus(){
+        return loginModule.netsdk.CLIENT_DHPTZControlEx(loginModule.m_hLoginHandle, 0, NetSDKLib.NET_PTZ_ControlType.NET_PTZ_ZOOM_ADD_CONTROL, 0, 1, 0, 0);
+    }
+
+    public static boolean ptzControlZoomPlusStop(){
+        return loginModule.netsdk.CLIENT_DHPTZControlEx(loginModule.m_hLoginHandle, 0, NetSDKLib.NET_PTZ_ControlType.NET_PTZ_ZOOM_ADD_CONTROL, 0, 0, 0, 1);
+    }
+
+    public static boolean ptzControlZoomMinus(){
+        return loginModule.netsdk.CLIENT_DHPTZControlEx(loginModule.m_hLoginHandle, 0, NetSDKLib.NET_PTZ_ControlType.NET_PTZ_ZOOM_DEC_CONTROL, 0, 1, 0, 0);
+    }
+
+    public static boolean ptzControlZoomMinusStop(){
+        return loginModule.netsdk.CLIENT_DHPTZControlEx(loginModule.m_hLoginHandle, 0, NetSDKLib.NET_PTZ_ControlType.NET_PTZ_ZOOM_DEC_CONTROL, 0, 0, 0, 1);
+    }
+
    
 } 

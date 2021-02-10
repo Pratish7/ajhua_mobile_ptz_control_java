@@ -35,18 +35,18 @@ public class stream {
 	// 	}
 	// }
 
-public static void main(String args[]){
-	init_.init(null, null);
-	loginModule.login("192.168.1.108", 37777, "admin", "admin@123");
-	JFrame frame = new JFrame();
-    frame.setSize(500,500);
-    frame.setLayout(new GridLayout(1,1));
-    Panel panel = new Panel();
-    panel.setBackground(Color.BLACK);
-    frame.add(panel);
-	panel.setVisible(true);
-    frame.setVisible(true);
+// public static void main(String args[]){
+// 	init_.init(null, null);
+// 	loginModule.login("192.168.1.108", 37777, "admin", "admin1admin");
+// 	JFrame frame = new JFrame();
+//     frame.setSize(500,500);
+//     frame.setLayout(new GridLayout(1,1));
+//     Panel panel = new Panel();
+//     panel.setBackground(Color.BLACK);
+//     frame.add(panel);
+// 	panel.setVisible(true);
+//     frame.setVisible(true);
    
-	startRealPlay(0,0, panel);
-}
+// 	startRealPlay(0,0, panel);
+// }
 }
